@@ -3,7 +3,8 @@
 %bcond_without	doc		# don't build ri/rdoc
 
 %define pkgname rspec-support
-Summary:	Support utilities for RSpec gems
+Summary:	Support utilities for RSpec modules
+Summary(pl.UTF-8):	Narzędzia wspierające dla modułów RSpec
 Name:		ruby-%{pkgname}
 Version:	3.7.1
 Release:	1
@@ -19,7 +20,12 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Support utilities for RSpec gems.
+RSpec::Support provides common functionality to RSpec::Core,
+RSpec::Expectations and RSpec::Mocks.
+
+%description -l pl.UTF-8
+RSpec::Support udostępnia funkcjonalność wspólną dla RSpec::Core,
+RSpec::Expectation i RSpec::Mocks.
 
 %package rdoc
 Summary:	HTML documentation for Ruby %{pkgname} module
@@ -61,11 +67,14 @@ end'
 
 #'
 
+%if %{with doc}
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
-# rm -r ri/NOT_THIS_MODULE_RELATED_DIRS
-rm ri/created.rid
-rm ri/cache.ri
+%{__rm} ri/File/cdesc-File.ri
+%{__rm} ri/Object/cdesc-Object.ri
+%{__rm} ri/created.rid
+%{__rm} ri/cache.ri
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -98,6 +107,12 @@ rm -rf $RPM_BUILD_ROOT
 %files ri
 %defattr(644,root,root,755)
 %dir %{ruby_ridir}/RSpec
+%{ruby_ridir}/Object/command_from-i.ri
+%{ruby_ridir}/Object/expected_encoding%3f-i.ri
+%{ruby_ridir}/Object/have_successful_no_warnings_output-i.ri
+%{ruby_ridir}/Object/load_all_files-i.ri
+%{ruby_ridir}/RSpec/CallerFilter
 %{ruby_ridir}/RSpec/Support
+%{ruby_ridir}/RSpec/cdesc-RSpec.ri
 %{ruby_ridir}/RSpecHelpers
 %endif
