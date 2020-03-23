@@ -7,7 +7,7 @@ Summary:	Support utilities for RSpec modules
 Summary(pl.UTF-8):	Narzędzia wspierające dla modułów RSpec
 Name:		ruby-%{pkgname}
 Version:	3.7.1
-Release:	1
+Release:	2
 License:	MIT
 Source0:	https://rubygems.org/downloads/%{pkgname}-%{version}.gem
 # Source0-md5:	a256e5c716dcb9a6877a037ab54997e3
@@ -70,7 +70,6 @@ end'
 %if %{with doc}
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
-%{__rm} ri/File/cdesc-File.ri
 %{__rm} ri/Object/cdesc-Object.ri
 %{__rm} ri/created.rid
 %{__rm} ri/cache.ri
