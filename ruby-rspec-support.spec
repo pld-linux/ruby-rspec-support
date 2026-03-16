@@ -6,16 +6,15 @@
 Summary:	Support utilities for RSpec modules
 Summary(pl.UTF-8):	Narzędzia wspierające dla modułów RSpec
 Name:		ruby-%{pkgname}
-Version:	3.7.1
-Release:	2
+Version:	3.13.7
+Release:	1
 License:	MIT
 Source0:	https://rubygems.org/downloads/%{pkgname}-%{version}.gem
-# Source0-md5:	a256e5c716dcb9a6877a037ab54997e3
+# Source0-md5:	2ceab6fb9d7e664817fc385639b7a865
 Group:		Development/Languages
 URL:		https://github.com/rspec/rspec-support
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.665
-Requires:	ruby-thread_order >= 1.1.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -70,9 +69,9 @@ end'
 %if %{with doc}
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
-%{__rm} ri/Object/cdesc-Object.ri
 %{__rm} ri/created.rid
 %{__rm} ri/cache.ri
+%{__rm} -r ri/Object
 %endif
 
 %install
@@ -106,12 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %files ri
 %defattr(644,root,root,755)
 %dir %{ruby_ridir}/RSpec
-%{ruby_ridir}/Object/command_from-i.ri
-%{ruby_ridir}/Object/expected_encoding%3f-i.ri
-%{ruby_ridir}/Object/have_successful_no_warnings_output-i.ri
-%{ruby_ridir}/Object/load_all_files-i.ri
 %{ruby_ridir}/RSpec/CallerFilter
 %{ruby_ridir}/RSpec/Support
 %{ruby_ridir}/RSpec/cdesc-RSpec.ri
-%{ruby_ridir}/RSpecHelpers
 %endif
